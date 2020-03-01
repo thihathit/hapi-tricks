@@ -65,7 +65,7 @@ const init = async () => {
   server.ext('onPreResponse', async function (request, h) {
     const response = request.response
 
-    // 404 pages redirect to vue index
+    // 404 pages redirect to spa index
     if (response.output && response.output.statusCode == 404) {
       const render = require('./render.js')
 
@@ -92,6 +92,8 @@ const init = async () => {
 
       return h.response(page).type('text/html')
     }
+
+    // 403 pages could be done the same way with the above method
 
     // other pages
     return h.continue;
